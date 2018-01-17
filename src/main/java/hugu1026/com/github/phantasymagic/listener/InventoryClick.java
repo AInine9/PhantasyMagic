@@ -29,6 +29,8 @@ public class InventoryClick implements Listener {
         if (inventory.getHolder() instanceof MagicSquareGui) {
             MagicSquareGui magicSquareGui = (MagicSquareGui) event.getInventory().getHolder();
 
+            if (event.getRawSlot() > 44) return;
+
             if (clickedItem != null) {
                 if (clickedItem.equals(magicSquareGui.getBARRIER_BLOCK())) {
                     event.setCancelled(true);
@@ -53,9 +55,6 @@ public class InventoryClick implements Listener {
 
                     player.closeInventory();
                     Bukkit.getServer().getPluginManager().callEvent(createMagicEvent);
-                }
-                else {
-                    return;
                 }
                 event.setCancelled(true);
             }
