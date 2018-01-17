@@ -4,6 +4,7 @@ import hugu1026.com.github.phantasymagic.event.CreateMagicEvent;
 import hugu1026.com.github.phantasymagic.gui.MagicSelectGui;
 import hugu1026.com.github.phantasymagic.gui.MagicSquareGui;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,17 +33,28 @@ public class InventoryClick implements Listener {
                 if (clickedItem.equals(magicSquareGui.getBARRIER_BLOCK())) {
                     event.setCancelled(true);
                     return;
-                } else if (clickedItem.equals(magicSquareGui.getPANEL())) {
+                }
+                else if (clickedItem.equals(magicSquareGui.getPANEL())) {
                     MagicSelectGui magicSelectGui = new MagicSelectGui(inventory, event.getRawSlot());
-                    magicSelectGui.openInventory(player);
-                } else if (clickedItem.equals(magicSquareGui.getPLAYER_HEAD())) {
 
-                } else if (clickedItem.equals(magicSquareGui.getCREATE_MAGIC_ITEM())) {
+                    if (magicSelectGui.checkMagicAmount()) {
+                        event.setCancelled(true);
+                        player.sendMessage(ChatColor.RED + "これ以上魔法を設置できない！");
+                        return;
+                    }
+
+                    magicSelectGui.openInventory(player);
+                }
+                else if (clickedItem.equals(magicSquareGui.getPLAYER_HEAD())) {
+
+                }
+                else if (clickedItem.equals(magicSquareGui.getCREATE_MAGIC_ITEM())) {
                     CreateMagicEvent createMagicEvent = new CreateMagicEvent(event.getInventory());
 
                     player.closeInventory();
                     Bukkit.getServer().getPluginManager().callEvent(createMagicEvent);
-                } else {
+                }
+                else {
                     return;
                 }
                 event.setCancelled(true);

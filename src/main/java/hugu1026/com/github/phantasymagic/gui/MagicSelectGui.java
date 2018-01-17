@@ -59,4 +59,18 @@ public class MagicSelectGui extends Gui {
     public int getSlotSource() {
         return this.slotSource;
     }
+
+    public boolean checkMagicAmount() {
+        Inventory guiSource = this.guiSource;
+        int amount = 0;
+
+        for (int i = 0; i < 45; i++) {
+            for (ItemStack magicIcon : magicSets) {
+                if (magicIcon.equals(guiSource.getItem(i))) {
+                    amount++;
+                }
+            }
+        }
+        return amount == 3;
+    }
 }
