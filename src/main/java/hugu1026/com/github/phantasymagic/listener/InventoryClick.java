@@ -51,7 +51,7 @@ public class InventoryClick implements Listener {
 
                 }
                 else if (clickedItem.equals(magicSquareGui.getCREATE_MAGIC_ITEM())) {
-                    CreateMagicEvent createMagicEvent = new CreateMagicEvent(event.getInventory());
+                    CreateMagicEvent createMagicEvent = new CreateMagicEvent(event.getInventory(), player);
 
                     player.closeInventory();
                     Bukkit.getServer().getPluginManager().callEvent(createMagicEvent);
