@@ -16,7 +16,7 @@ public class ActivateMagicEvent extends Event {
     private ItemStack MAGIC_WAND;
     private Player player;
     private Location location;
-    private HashMap<Integer, String> activateMagicList;
+    private HashMap<Integer, String> activateMagicList = new HashMap<>();
 
     public ActivateMagicEvent(Player player) {
         this.player = player;
@@ -30,7 +30,7 @@ public class ActivateMagicEvent extends Event {
             int slot = Integer.parseInt(temp[0]);
             String magic = temp[1];
 
-            Bukkit.getServer().broadcastMessage(slot + magic);
+            this.activateMagicList.put(slot, magic);
         }
     }
 
@@ -53,5 +53,9 @@ public class ActivateMagicEvent extends Event {
 
     public Location getLocation() {
         return this.location;
+    }
+
+    public HashMap<Integer, String> getActivateMagicList() {
+        return this.activateMagicList;
     }
 }
