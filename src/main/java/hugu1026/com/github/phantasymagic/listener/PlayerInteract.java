@@ -1,6 +1,9 @@
 package hugu1026.com.github.phantasymagic.listener;
 
+import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
 import hugu1026.com.github.phantasymagic.gui.MagicSquareGui;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,16 +19,31 @@ public class PlayerInteract implements Listener {
         Player player = event.getPlayer();
         Block block = event.getClickedBlock();
 
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK
-                || event.getHand() != EquipmentSlot.HAND) {
+        if (event.getHand() != EquipmentSlot.HAND) {
             return;
         }
 
-        MagicSquareGui magicSquareGui = new MagicSquareGui();
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            MagicSquareGui magicSquareGui = new MagicSquareGui();
 
-        if (magicSquareGui.canOpen(block)) {
-            event.setCancelled(true);
-            magicSquareGui.openInventory(player);
+            if (magicSquareGui.canOpen(block)) {
+                event.setCancelled(true);
+                magicSquareGui.openInventory(player);
+            }
         }
+
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK
+                || event.getAction() == Action.RIGHT_CLICK_AIR) {
+            if (player.getInventory().getItemInMainHand() == null
+                    || !player.getInventory().getItemInMainHand().hasItemMeta()
+                    || !player.getInventory().getItemInMainHand().getItemMeta().hasLore()) return;
+
+            if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "魔法の杖")) {
+                ActivateMagicEvent activateMagicEvent = new ActivateMagicEvent(player);
+                Bukkit.getServer().getPluginManager().callEvent(activateMagicEvent);
+            }
+        }
+
+
     }
 }
