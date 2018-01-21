@@ -18,12 +18,12 @@ public class Fire extends Magic {
 
     @Override
     public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation) {
-        Collection<Entity> entities = Bukkit.getServer().getWorld("world").getNearbyEntities(magicLocation, 0.25, 5, 0.25);
+        Collection<Entity> entities = event.getPlayer().getWorld().getNearbyEntities(magicLocation, 0.25, 5, 0.25);
         for (Entity entity : entities) {
             entity.setFireTicks(20 * 5);
         }
-        Bukkit.getWorld("world").spawnParticle(Particle.LAVA, magicLocation.add(0, 1, 0), 20);
-        Bukkit.getWorld("world").playSound(magicLocation, Sound.ENTITY_GHAST_SHOOT, 1, 0);
+        event.getPlayer().getWorld().spawnParticle(Particle.LAVA, magicLocation.add(0, 1, 0), 20);
+        event.getPlayer().getWorld().playSound(magicLocation, Sound.ENTITY_GHAST_SHOOT, 1, 0);
     }
 
     @Override
