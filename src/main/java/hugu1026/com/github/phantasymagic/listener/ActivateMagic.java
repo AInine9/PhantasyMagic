@@ -27,16 +27,13 @@ public class ActivateMagic implements Listener {
     @EventHandler
     public void ActivateMagic(ActivateMagicEvent event) {
         HashMap<Integer, String> activateMagicList = event.getActivateMagicList();
-        Player player = event.getPlayer();
-        Location location = event.getLocation();
-
 
         for (int slot : activateMagicList.keySet()) {
             String activateMagic = activateMagicList.get(slot);
 
             magicClass.stream().forEach(c -> {
                 try {
-                    c.getConstructor(String.class, Event.class).newInstance(activateMagic, event).checkMagicName(activateMagic);
+                    c.getConstructor(String.class, Event.class, Integer.class).newInstance(activateMagic, event, slot);
                 } catch (Exception ex) {
                     return;
                 }

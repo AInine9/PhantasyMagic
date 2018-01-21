@@ -15,13 +15,11 @@ public class ActivateMagicEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
     private ItemStack MAGIC_WAND;
     private Player player;
-    private Location location;
     private HashMap<Integer, String> activateMagicList = new HashMap<>();
 
     public ActivateMagicEvent(Player player) {
         this.player = player;
         this.MAGIC_WAND = player.getInventory().getItemInMainHand();
-        this.location = player.getLocation();
 
         List<String> lores = this.MAGIC_WAND.getItemMeta().getLore();
         for (String lore : lores) {
@@ -49,10 +47,6 @@ public class ActivateMagicEvent extends Event {
 
     public ItemStack getMAGIC_WAND() {
         return this.MAGIC_WAND;
-    }
-
-    public Location getLocation() {
-        return this.location;
     }
 
     public HashMap<Integer, String> getActivateMagicList() {
