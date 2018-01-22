@@ -1,7 +1,6 @@
 package hugu1026.com.github.phantasymagic.magic;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.util.Vector;
