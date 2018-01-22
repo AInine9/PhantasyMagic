@@ -1,7 +1,6 @@
 package hugu1026.com.github.phantasymagic.listener;
 
 import hugu1026.com.github.phantasymagic.event.CreateMagicEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
