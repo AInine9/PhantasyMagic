@@ -33,10 +33,6 @@ public class Explosion extends Magic {
 
     @Override
     public boolean checkMagicName(String magicName) {
-        if (magicName.equals("エクスプロージョン")) {
-            return true;
-        } else {
-            return false;
-        }
+        return magicName.equals("エクスプロージョン");
     }
 }

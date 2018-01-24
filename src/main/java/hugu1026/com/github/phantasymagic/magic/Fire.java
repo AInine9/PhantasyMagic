@@ -31,10 +31,6 @@ public class Fire extends Magic {
 
     @Override
     public boolean checkMagicName(String magicName) {
-        if (magicName.equals("ファイヤ")) {
-            return true;
-        } else {
-            return false;
-        }
+        return magicName.equals("ファイヤ");
     }
 }

@@ -36,10 +36,6 @@ public class Freeze extends Magic {
 
     @Override
     public boolean checkMagicName(String magicName) {
-        if (magicName.equals("フリーズ")) {
-            return true;
-        } else {
-            return false;
-        }
+        return magicName.equals("フリーズ");
     }
 }
