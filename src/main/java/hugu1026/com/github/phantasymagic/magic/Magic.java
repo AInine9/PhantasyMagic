@@ -1,22 +1,26 @@
 package hugu1026.com.github.phantasymagic.magic;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
+import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.util.Vector;
 
 public abstract class Magic {
     private Location magicLocation;
+    private int mana;
 
     public Magic(String magicName, Event event, Integer slot) {
         if (checkMagicName(magicName) && this.checkActivateEventName(event)) {
             ActivateMagicEvent activateMagicEvent = (ActivateMagicEvent) event;
             magicLocation = this.getMagicLocation(slot, (activateMagicEvent.getPlayer().getLocation()));
-            ActivatedMagic(activateMagicEvent, magicLocation);
+            mana = this.getPlayerMana((activateMagicEvent.getPlayer()));
+            ActivatedMagic(activateMagicEvent, magicLocation, mana);
         }
     }
 
-    public abstract void ActivatedMagic(ActivateMagicEvent event, Location magicLocation);
+    public abstract void ActivatedMagic(ActivateMagicEvent event, Location magicLocation, int mana);
 
     public abstract boolean checkMagicName(String magicName);
 
@@ -127,5 +131,9 @@ public abstract class Magic {
         this.magicLocation = playerLocation.add(vector1).add(vector2);
 
         return this.magicLocation;
+    }
+
+    public int getPlayerMana(Player player) {
+        return PlayerDataUtil.getPlayerMANA(player);
     }
 }

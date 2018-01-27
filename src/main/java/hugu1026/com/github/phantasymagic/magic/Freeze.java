@@ -21,7 +21,7 @@ public class Freeze extends Magic {
     }
 
     @Override
-    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation) {
+    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation, int mana) {
         Collection<Entity> entities = event.getPlayer().getWorld().getNearbyEntities(magicLocation, 0.25, 5, 0.25);
         for (Entity entity : entities) {
             if (entity instanceof Creature) {

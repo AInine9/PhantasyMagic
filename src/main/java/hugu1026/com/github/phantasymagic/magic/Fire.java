@@ -1,6 +1,7 @@
 package hugu1026.com.github.phantasymagic.magic;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -17,7 +18,7 @@ public class Fire extends Magic {
     }
 
     @Override
-    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation) {
+    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation, int mana) {
         Collection<Entity> entities = event.getPlayer().getWorld().getNearbyEntities(magicLocation, 0.25, 5, 0.25);
         for (Entity entity : entities) {
             if (entity instanceof Creature) {
@@ -27,6 +28,8 @@ public class Fire extends Magic {
         }
         event.getPlayer().getWorld().spawnParticle(Particle.LAVA, magicLocation.add(0, 1, 0), 20);
         event.getPlayer().getWorld().playSound(magicLocation, Sound.ENTITY_GHAST_SHOOT, 1, 0);
+
+        Bukkit.getServer().broadcastMessage(String.valueOf(mana));
     }
 
     @Override
