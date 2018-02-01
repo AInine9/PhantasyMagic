@@ -14,11 +14,11 @@ import java.util.Collection;
 public class Fire extends Magic {
 
     public Fire(String magicName, Event event, Integer slot) {
-        super(magicName, event, slot);
+        super(magicName, event, slot, 10);
     }
 
     @Override
-    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation, int mana) {
+    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation) {
         Collection<Entity> entities = event.getPlayer().getWorld().getNearbyEntities(magicLocation, 0.25, 5, 0.25);
         for (Entity entity : entities) {
             if (entity instanceof Creature) {
@@ -28,8 +28,6 @@ public class Fire extends Magic {
         }
         event.getPlayer().getWorld().spawnParticle(Particle.LAVA, magicLocation.add(0, 1, 0), 20);
         event.getPlayer().getWorld().playSound(magicLocation, Sound.ENTITY_GHAST_SHOOT, 1, 0);
-
-        Bukkit.getServer().broadcastMessage(String.valueOf(mana));
     }
 
     @Override

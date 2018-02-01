@@ -17,11 +17,11 @@ import java.util.Collection;
 public class Freeze extends Magic {
 
     public Freeze(String magicName, Event event, Integer slot) {
-        super(magicName, event, slot);
+        super(magicName, event, slot, 10);
     }
 
     @Override
-    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation, int mana) {
+    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation) {
         Collection<Entity> entities = event.getPlayer().getWorld().getNearbyEntities(magicLocation, 0.25, 5, 0.25);
         for (Entity entity : entities) {
             if (entity instanceof Creature) {

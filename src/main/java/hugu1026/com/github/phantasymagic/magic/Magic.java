@@ -2,25 +2,37 @@ package hugu1026.com.github.phantasymagic.magic;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
 import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.util.Vector;
 
+import java.io.File;
+
 public abstract class Magic {
     private Location magicLocation;
-    private int mana;
 
-    public Magic(String magicName, Event event, Integer slot) {
+    public Magic(String magicName, Event event, Integer slot, Integer neededMana) {
         if (checkMagicName(magicName) && this.checkActivateEventName(event)) {
             ActivateMagicEvent activateMagicEvent = (ActivateMagicEvent) event;
-            magicLocation = this.getMagicLocation(slot, (activateMagicEvent.getPlayer().getLocation()));
-            mana = this.getPlayerMana((activateMagicEvent.getPlayer()));
-            ActivatedMagic(activateMagicEvent, magicLocation, mana);
+
+            if (checkMana(getPlayerMana(activateMagicEvent.getPlayer()), neededMana)) {
+                magicLocation = this.getMagicLocation(slot, (activateMagicEvent.getPlayer().getLocation()));
+
+                ActivatedMagic(activateMagicEvent, magicLocation);
+                consumeMana(activateMagicEvent.getPlayer(), neededMana);
+            } else {
+                activateMagicEvent.getPlayer().sendMessage(ChatColor.RED + "マナが足りない！");
+            }
         }
     }
 
-    public abstract void ActivatedMagic(ActivateMagicEvent event, Location magicLocation, int mana);
+    public abstract void ActivatedMagic(ActivateMagicEvent event, Location magicLocation);
 
     public abstract boolean checkMagicName(String magicName);
 
@@ -135,5 +147,23 @@ public abstract class Magic {
 
     public int getPlayerMana(Player player) {
         return PlayerDataUtil.getPlayerMANA(player);
+    }
+
+    public boolean checkMana(int playerHavingMana, int neededMana) {
+        return playerHavingMana >= neededMana;
+    }
+
+    public void consumeMana(Player player, int neededMana) {
+        File playerFile = PlayerDataUtil.getPlayerFile(player);
+        FileConfiguration playerData = PlayerDataUtil.getPlayerData(player);
+
+        playerData.set("status.mana", PlayerDataUtil.getPlayerMANA(player) - neededMana);
+        PlayerDataUtil.savePlayerData(playerFile, playerData, player);
+
+        String playerMana = String.valueOf(PlayerDataUtil.getPlayerMANA(player));
+        String playerMaxMana = String.valueOf(PlayerDataUtil.getPlayerMAX_MANA(player));
+        String message = playerMana + " / " + playerMaxMana;
+
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
     }
 }
