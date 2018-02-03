@@ -23,7 +23,7 @@ public class PhantasyWeaponAttack implements Listener {
             File playerFile = PlayerDataUtil.getPlayerFile(player);
             FileConfiguration playerData = PlayerDataUtil.getPlayerData(player);
 
-            if (mana + 10 > maxMana) {
+            if (mana + 10 < maxMana) {
                 playerData.set("status.mana", mana + 10);
                 PlayerDataUtil.savePlayerData(playerFile, playerData, player);
             } else {
