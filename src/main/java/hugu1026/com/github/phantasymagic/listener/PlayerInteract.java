@@ -36,7 +36,8 @@ public class PlayerInteract implements Listener {
                 || event.getAction() == Action.RIGHT_CLICK_AIR) {
             if (player.getInventory().getItemInMainHand() == null
                     || !player.getInventory().getItemInMainHand().hasItemMeta()
-                    || !player.getInventory().getItemInMainHand().getItemMeta().hasLore()) return;
+                    || !player.getInventory().getItemInMainHand().getItemMeta().hasLore()
+                    || !player.getInventory().getItemInMainHand().getItemMeta().hasDisplayName()) return;
 
             if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "魔法の杖")) {
                 ActivateMagicEvent activateMagicEvent = new ActivateMagicEvent(player);
