@@ -17,7 +17,7 @@ import java.util.Collection;
 public class Freeze extends Magic {
 
     public Freeze(String magicName, Event event, Integer slot) {
-        super(magicName, event, slot, 10);
+        super(magicName, event, slot, 5);
     }
 
     @Override

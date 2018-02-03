@@ -12,7 +12,7 @@ import java.util.Collection;
 public class Explosion extends Magic {
 
     public Explosion(String magicName, Event event, Integer slot) {
-        super(magicName, event, slot, 15);
+        super(magicName, event, slot, 10);
     }
 
     @Override

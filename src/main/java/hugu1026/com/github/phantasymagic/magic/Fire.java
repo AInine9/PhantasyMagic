@@ -13,7 +13,7 @@ import java.util.Collection;
 public class Fire extends Magic {
 
     public Fire(String magicName, Event event, Integer slot) {
-        super(magicName, event, slot, 10);
+        super(magicName, event, slot, 5);
     }
 
     @Override
