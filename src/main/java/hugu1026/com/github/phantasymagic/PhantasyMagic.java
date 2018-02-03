@@ -1,9 +1,6 @@
 package hugu1026.com.github.phantasymagic;
 
-import hugu1026.com.github.phantasymagic.listener.ActivateMagic;
-import hugu1026.com.github.phantasymagic.listener.CreateMagic;
-import hugu1026.com.github.phantasymagic.listener.InventoryClick;
-import hugu1026.com.github.phantasymagic.listener.PlayerInteract;
+import hugu1026.com.github.phantasymagic.listener.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,5 +28,6 @@ public final class PhantasyMagic extends JavaPlugin {
         pm.registerEvents(new InventoryClick(), this);
         pm.registerEvents(new CreateMagic(), this);
         pm.registerEvents(new ActivateMagic(), this);
+        pm.registerEvents(new PhantasyWeaponAttack(), this);
     }
 }

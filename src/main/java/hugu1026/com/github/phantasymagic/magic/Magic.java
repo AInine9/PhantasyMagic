@@ -4,7 +4,6 @@ import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
 import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
