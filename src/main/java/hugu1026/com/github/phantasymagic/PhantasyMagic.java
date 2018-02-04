@@ -29,5 +29,6 @@ public final class PhantasyMagic extends JavaPlugin {
         pm.registerEvents(new CreateMagic(), this);
         pm.registerEvents(new ActivateMagic(), this);
         pm.registerEvents(new PhantasyWeaponAttack(), this);
+        pm.registerEvents(new DropExp(), this);
     }
 }
