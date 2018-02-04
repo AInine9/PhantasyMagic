@@ -1,7 +1,9 @@
 package hugu1026.com.github.phantasymagic.listener;
 
+import hugu1026.com.github.phantasymagic.event.PlayerManaChangeEvent;
 import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import hugu1026.com.github.phantasyweapon.event.PhantasyWeaponAttackEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,9 +28,15 @@ public class PhantasyWeaponAttack implements Listener {
             if (mana + 10 < maxMana) {
                 playerData.set("status.mana", mana + 10);
                 PlayerDataUtil.savePlayerData(playerFile, playerData, player);
+
+                PlayerManaChangeEvent manaChangeEvent = new PlayerManaChangeEvent(player, mana, 10);
+                Bukkit.getServer().getPluginManager().callEvent(manaChangeEvent);
             } else {
                 playerData.set("status.mana", maxMana);
                 PlayerDataUtil.savePlayerData(playerFile, playerData, player);
+
+                PlayerManaChangeEvent manaChangeEvent = new PlayerManaChangeEvent(player, mana, maxMana - mana);
+                Bukkit.getServer().getPluginManager().callEvent(manaChangeEvent);
             }
         }
     }
