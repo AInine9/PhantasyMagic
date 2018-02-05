@@ -3,8 +3,6 @@ package hugu1026.com.github.phantasymagic.magic;
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
 import hugu1026.com.github.phantasymagic.event.PlayerManaChangeEvent;
 import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -162,12 +160,6 @@ public abstract class Magic {
 
         playerData.set("status.mana", originalMana - neededMana);
         PlayerDataUtil.savePlayerData(playerFile, playerData, player);
-
-        String playerMana = String.valueOf(PlayerDataUtil.getPlayerMANA(player));
-        String playerMaxMana = String.valueOf(PlayerDataUtil.getPlayerMAX_MANA(player));
-        String message = playerMana + " / " + playerMaxMana;
-
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
 
         PlayerManaChangeEvent manaChangeEvent = new PlayerManaChangeEvent(player, originalMana, -neededMana);
         Bukkit.getServer().getPluginManager().callEvent(manaChangeEvent);
