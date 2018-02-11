@@ -15,15 +15,17 @@ import java.io.File;
 
 public abstract class Magic {
     private Location magicLocation;
+    private int magicPower;
 
     public Magic(String magicName, Event event, Integer slot, Integer neededMana) {
         if (checkMagicName(magicName) && this.checkActivateEventName(event)) {
             ActivateMagicEvent activateMagicEvent = (ActivateMagicEvent) event;
+            magicPower = PlayerDataUtil.getPlayerMAGIC(activateMagicEvent.getPlayer());
 
             if (checkMana(getPlayerMana(activateMagicEvent.getPlayer()), neededMana)) {
                 magicLocation = this.getMagicLocation(slot, (activateMagicEvent.getPlayer().getLocation()));
 
-                ActivatedMagic(activateMagicEvent, magicLocation);
+                ActivatedMagic(activateMagicEvent, magicLocation, magicPower);
                 consumeMana(activateMagicEvent.getPlayer(), neededMana);
             } else {
                 activateMagicEvent.getPlayer().sendMessage(ChatColor.RED + "マナが足りない！");
@@ -31,7 +33,7 @@ public abstract class Magic {
         }
     }
 
-    public abstract void ActivatedMagic(ActivateMagicEvent event, Location magicLocation);
+    public abstract void ActivatedMagic(ActivateMagicEvent event, Location magicLocation, int magicPower);
 
     public abstract boolean checkMagicName(String magicName);
 
@@ -163,5 +165,9 @@ public abstract class Magic {
 
         PlayerManaChangeEvent manaChangeEvent = new PlayerManaChangeEvent(player, originalMana, -neededMana);
         Bukkit.getServer().getPluginManager().callEvent(manaChangeEvent);
+    }
+
+    public double magicDamageCalc(int base, int magicPower) {
+        return (double) base + (magicPower * 0.5);
     }
 }

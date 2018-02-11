@@ -17,12 +17,12 @@ public class Fire extends Magic {
     }
 
     @Override
-    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation) {
+    public void ActivatedMagic(ActivateMagicEvent event, Location magicLocation, int magicPower) {
         Collection<Entity> entities = event.getPlayer().getWorld().getNearbyEntities(magicLocation, 0.25, 5, 0.25);
         for (Entity entity : entities) {
             if (entity instanceof Creature) {
                 Creature creature = (Creature) entity;
-                creature.setFireTicks(20 * 5);
+                creature.setFireTicks((int) magicDamageCalc(20, magicPower));
             }
         }
         event.getPlayer().getWorld().spawnParticle(Particle.LAVA, magicLocation.add(0, 1, 0), 20);
