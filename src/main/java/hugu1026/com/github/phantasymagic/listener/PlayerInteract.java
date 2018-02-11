@@ -39,7 +39,7 @@ public class PlayerInteract implements Listener {
                     || !player.getInventory().getItemInMainHand().getItemMeta().hasLore()
                     || !player.getInventory().getItemInMainHand().getItemMeta().hasDisplayName()) return;
 
-            if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "魔法の杖")) {
+            if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().contains(ChatColor.BLUE + "魔法の杖")) {
                 ActivateMagicEvent activateMagicEvent = new ActivateMagicEvent(player);
                 Bukkit.getServer().getPluginManager().callEvent(activateMagicEvent);
             }

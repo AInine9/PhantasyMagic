@@ -18,10 +18,10 @@ public class MagicSelectGui extends Gui {
     private int slotSource;
 
     public MagicSelectGui(Inventory inventory, int slotSource) {
-        this.FIRE = super.createItemStack(Material.FIREBALL, ChatColor.YELLOW + "ファイヤ", null, 1);
-        this.FREEZE = super.createItemStack(Material.ICE, ChatColor.YELLOW + "フリーズ", null, 1);
-        this.EXPLOSION = super.createItemStack(Material.TNT, ChatColor.YELLOW + "エクスプロージョン", null, 1);
-        this.ACID_RAIN = super.createItemStack(Material.WATER_BUCKET, ChatColor.YELLOW + "アシッドレイン", null, 1);
+        this.FIRE = super.createItemStack(Material.FIREBALL, ChatColor.YELLOW + "ファイヤ /5 マナ", null, 1);
+        this.FREEZE = super.createItemStack(Material.ICE, ChatColor.YELLOW + "フリーズ /5 マナ", null, 1);
+        this.EXPLOSION = super.createItemStack(Material.TNT, ChatColor.YELLOW + "エクスプロージョン /10 マナ", null, 1);
+        this.ACID_RAIN = super.createItemStack(Material.WATER_BUCKET, ChatColor.YELLOW + "アシッドレイン /7 マナ", null, 1);
 
         this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN};
         this.magicSets = Arrays.asList(magicSet);

@@ -23,15 +23,19 @@ public class CreateMagic implements Listener {
         ItemStack MAGIC_WAND = new ItemStack(Material.STICK, 1);
         ItemMeta wandMeta = MAGIC_WAND.getItemMeta();
         List<String> lore = new ArrayList<>();
+        int sumMana = 0;
 
         for (int key : magicIcons.keySet()) {
             ItemStack magicIcon = magicIcons.get(key);
             String slotNumber = String.valueOf(key);
-            String magiclore = ChatColor.GREEN + slotNumber + ": " + magicIcon.getItemMeta().getDisplayName();
-            lore.add(magiclore);
+            String[] NameandMana = magicIcon.getItemMeta().getDisplayName().split(" /");
+            String magicName = ChatColor.GREEN + slotNumber + ": " + NameandMana[0];
+            int magicMana = Integer.parseInt(NameandMana[1].replace(" マナ", ""));
+            lore.add(magicName);
+            sumMana = sumMana + magicMana;
         }
 
-        wandMeta.setDisplayName(ChatColor.BLUE + "魔法の杖");
+        wandMeta.setDisplayName(ChatColor.BLUE + "魔法の杖 " + "必要マナ: " + ChatColor.LIGHT_PURPLE + sumMana);
         wandMeta.setLore(lore);
 
         MAGIC_WAND.setItemMeta(wandMeta);
