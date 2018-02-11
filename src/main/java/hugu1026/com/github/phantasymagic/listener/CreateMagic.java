@@ -36,6 +36,6 @@ public class CreateMagic implements Listener {
 
         MAGIC_WAND.setItemMeta(wandMeta);
 
-        player.getInventory().addItem(MAGIC_WAND);
+        player.getWorld().dropItem(player.getLocation().add(0, 0.5, 0), MAGIC_WAND).setPickupDelay(0);
     }
 }
