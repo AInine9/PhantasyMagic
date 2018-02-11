@@ -1,10 +1,7 @@
 package hugu1026.com.github.phantasymagic.listener;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
-import hugu1026.com.github.phantasymagic.magic.Explosion;
-import hugu1026.com.github.phantasymagic.magic.Fire;
-import hugu1026.com.github.phantasymagic.magic.Freeze;
-import hugu1026.com.github.phantasymagic.magic.Magic;
+import hugu1026.com.github.phantasymagic.magic.*;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,6 +19,7 @@ public class ActivateMagic implements Listener {
         magicClass.add(Fire.class);
         magicClass.add(Freeze.class);
         magicClass.add(Explosion.class);
+        magicClass.add(AcidRain.class);
     }
 
     @EventHandler
