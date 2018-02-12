@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MagicSelectGui extends Gui {
 
-    private ItemStack FIRE, FREEZE, EXPLOSION, ACID_RAIN;
+    private ItemStack FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP;
     private ItemStack[] magicSet;
     private List<ItemStack> magicSets;
     private Inventory guiSource;
@@ -22,8 +22,9 @@ public class MagicSelectGui extends Gui {
         this.FREEZE = super.createItemStack(Material.ICE, ChatColor.YELLOW + "フリーズ /5 マナ", null, 1);
         this.EXPLOSION = super.createItemStack(Material.TNT, ChatColor.YELLOW + "エクスプロージョン /10 マナ", null, 1);
         this.ACID_RAIN = super.createItemStack(Material.WATER_BUCKET, ChatColor.YELLOW + "アシッドレイン /7 マナ", null, 1);
+        this.ICELC_DROP = super.createItemStack(Material.PACKED_ICE, ChatColor.YELLOW + "アイゼルクドロップ /10 マナ", null, 1);
 
-        this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN};
+        this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP};
         this.magicSets = Arrays.asList(magicSet);
 
         this.slotSource = slotSource;

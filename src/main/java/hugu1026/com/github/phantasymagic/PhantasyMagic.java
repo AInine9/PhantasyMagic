@@ -11,8 +11,6 @@ public final class PhantasyMagic extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
 
-
-
         registerEvents();
     }
 
@@ -31,5 +29,6 @@ public final class PhantasyMagic extends JavaPlugin {
         pm.registerEvents(new PhantasyWeaponAttack(), this);
         pm.registerEvents(new DropExp(), this);
         pm.registerEvents(new PlayerManaChange(), this);
+        pm.registerEvents(new EntityChangeBlock(), this);
     }
 }
