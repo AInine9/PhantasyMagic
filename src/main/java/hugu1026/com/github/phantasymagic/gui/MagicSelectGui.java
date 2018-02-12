@@ -35,7 +35,7 @@ public class MagicSelectGui extends Gui {
 
     @Override
     public void openInventory(Player player) {
-        for(int i = 0; i < magicSets.size(); i++) {
+        for (int i = 0; i < magicSets.size(); i++) {
             super.setInventory(magicSets.get(i), i);
         }
         super.openInventory(player);

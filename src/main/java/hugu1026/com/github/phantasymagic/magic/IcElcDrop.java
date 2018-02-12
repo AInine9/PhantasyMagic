@@ -14,7 +14,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.Collection;
 
-public class IcElcDrop extends Magic{
+public class IcElcDrop extends Magic {
 
     public IcElcDrop(String magicName, Event event, Integer slot) {
         super(magicName, event, slot, 10);
@@ -30,7 +30,7 @@ public class IcElcDrop extends Magic{
             }
         }
         event.getPlayer().getWorld().spawnParticle(Particle.CRIT_MAGIC, magicLocation.add(0, 1, 0), 100);
-        FallingBlock fallingBlock = magicLocation.getWorld().spawnFallingBlock(magicLocation.add(0, 1, 0), Material.PACKED_ICE, (byte)0);
+        FallingBlock fallingBlock = magicLocation.getWorld().spawnFallingBlock(magicLocation.add(0, 1, 0), Material.PACKED_ICE, (byte) 0);
         fallingBlock.setDropItem(false);
         fallingBlock.setMetadata("notPlace", new FixedMetadataValue(PhantasyMagic.getPlugin(PhantasyMagic.class), Boolean.TRUE));
         event.getPlayer().getWorld().playSound(magicLocation, Sound.ENTITY_LIGHTNING_THUNDER, 1, 2);

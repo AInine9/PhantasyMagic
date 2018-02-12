@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class MagicSquareGui extends Gui {
-    private ItemStack PLAYER_HEAD, PANEL, BARRIER_BLOCK, CREATE_MAGIC_ITEM;
     private static final int barrierSlot[] = {
             0, 1, 7, 8, 9, 10, 16, 17, 18, 19, 25, 27, 28,
             34, 35, 36, 37, 43, 44
@@ -18,6 +17,7 @@ public class MagicSquareGui extends Gui {
     };
     private static final int player_headSlot = 40;
     private static final int create_magic_itemSlot = 26;
+    private ItemStack PLAYER_HEAD, PANEL, BARRIER_BLOCK, CREATE_MAGIC_ITEM;
 
     public MagicSquareGui() {
         PLAYER_HEAD = super.createItemStack(Material.SKULL_ITEM, ChatColor.LIGHT_PURPLE + "プレイヤーの位置", null, 1);

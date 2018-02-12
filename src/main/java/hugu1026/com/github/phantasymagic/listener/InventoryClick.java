@@ -35,8 +35,7 @@ public class InventoryClick implements Listener {
                 if (clickedItem.equals(magicSquareGui.getBARRIER_BLOCK())) {
                     event.setCancelled(true);
                     return;
-                }
-                else if (clickedItem.equals(magicSquareGui.getPANEL())) {
+                } else if (clickedItem.equals(magicSquareGui.getPANEL())) {
                     MagicSelectGui magicSelectGui = new MagicSelectGui(inventory, event.getRawSlot());
 
                     if (magicSelectGui.checkMagicAmount()) {
@@ -46,11 +45,9 @@ public class InventoryClick implements Listener {
                     }
 
                     magicSelectGui.openInventory(player);
-                }
-                else if (clickedItem.equals(magicSquareGui.getPLAYER_HEAD())) {
+                } else if (clickedItem.equals(magicSquareGui.getPLAYER_HEAD())) {
 
-                }
-                else if (clickedItem.equals(magicSquareGui.getCREATE_MAGIC_ITEM())) {
+                } else if (clickedItem.equals(magicSquareGui.getCREATE_MAGIC_ITEM())) {
                     CreateMagicEvent createMagicEvent = new CreateMagicEvent(event.getInventory(), player);
 
                     player.closeInventory();

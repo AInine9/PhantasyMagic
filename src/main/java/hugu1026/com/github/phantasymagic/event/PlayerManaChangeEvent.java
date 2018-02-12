@@ -17,8 +17,8 @@ public class PlayerManaChangeEvent extends Event {
         this.maxMana = PlayerDataUtil.getPlayerMAX_MANA(player);
     }
 
-    public static  HandlerList getHandlerList() {
-        return  handlers;
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 
     @Override

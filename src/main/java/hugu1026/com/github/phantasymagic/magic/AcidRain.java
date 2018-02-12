@@ -1,7 +1,9 @@
 package hugu1026.com.github.phantasymagic.magic;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
-import org.bukkit.*;
+import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;

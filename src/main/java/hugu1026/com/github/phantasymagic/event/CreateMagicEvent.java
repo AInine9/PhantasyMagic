@@ -32,8 +32,8 @@ public class CreateMagicEvent extends Event {
         }
     }
 
-    public static  HandlerList getHandlerList() {
-        return  handlers;
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 
     @Override

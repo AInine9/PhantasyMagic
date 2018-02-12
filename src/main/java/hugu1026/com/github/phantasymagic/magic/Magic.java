@@ -127,7 +127,7 @@ public abstract class Magic {
                 addBlockstoSide = 2;
                 break;
             default:
-                    return null;
+                return null;
         }
 
         Vector vector = playerLocation.getDirection();
@@ -136,7 +136,7 @@ public abstract class Magic {
         //extend vector forward
         Vector vector1 = vector.multiply(addBlockstoForward);
         //rotate vector clockwise
-        originalClone.setYaw(originalClone.getYaw()+90);
+        originalClone.setYaw(originalClone.getYaw() + 90);
         //extend vector to the right
         Vector vector2 = originalClone.getDirection().multiply(addBlockstoSide);
 
