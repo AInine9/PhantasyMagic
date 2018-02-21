@@ -38,7 +38,7 @@ public class InventoryClick implements Listener {
                 } else if (clickedItem.equals(magicSquareGui.getPANEL())) {
                     MagicSelectGui magicSelectGui = new MagicSelectGui(inventory, event.getRawSlot());
 
-                    if (magicSelectGui.checkMagicAmount()) {
+                    if (magicSelectGui.checkMagicAmount(player)) {
                         event.setCancelled(true);
                         player.sendMessage(ChatColor.RED + "これ以上魔法を設置できない！");
                         return;

@@ -1,5 +1,6 @@
 package hugu1026.com.github.phantasymagic.gui;
 
+import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -63,9 +64,10 @@ public class MagicSelectGui extends Gui {
         return this.slotSource;
     }
 
-    public boolean checkMagicAmount() {
+    public boolean checkMagicAmount(Player player) {
         Inventory guiSource = this.guiSource;
         int amount = 0;
+        int playerMaxMagicAmount = PlayerDataUtil.getMagicAmountLimit(player);
 
         for (int i = 0; i < 45; i++) {
             for (ItemStack magicIcon : magicSets) {
@@ -74,6 +76,7 @@ public class MagicSelectGui extends Gui {
                 }
             }
         }
-        return amount == 3;
+
+        return amount == playerMaxMagicAmount;
     }
 }
