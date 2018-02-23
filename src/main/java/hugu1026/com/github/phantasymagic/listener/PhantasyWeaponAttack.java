@@ -18,18 +18,20 @@ public class PhantasyWeaponAttack implements Listener {
 
         Player player = event.getAttacker();
 
+        int magicPower = PlayerDataUtil.getPlayerMAGIC(player);
         int mana = PlayerDataUtil.getPlayerMANA(player);
         int maxMana = PlayerDataUtil.getPlayerMAX_MANA(player);
+        int healMana = (magicPower + maxMana) / 30;
 
         if (mana != maxMana) {
             File playerFile = PlayerDataUtil.getPlayerFile(player);
             FileConfiguration playerData = PlayerDataUtil.getPlayerData(player);
 
-            if (mana + 10 < maxMana) {
-                playerData.set("status.mana", mana + 10);
+            if (mana + healMana < maxMana) {
+                playerData.set("status.mana", mana + healMana);
                 PlayerDataUtil.savePlayerData(playerFile, playerData, player);
 
-                PlayerManaChangeEvent manaChangeEvent = new PlayerManaChangeEvent(player, mana, 10);
+                PlayerManaChangeEvent manaChangeEvent = new PlayerManaChangeEvent(player, mana, healMana);
                 Bukkit.getServer().getPluginManager().callEvent(manaChangeEvent);
             } else {
                 playerData.set("status.mana", maxMana);
