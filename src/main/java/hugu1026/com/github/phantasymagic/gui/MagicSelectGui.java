@@ -7,23 +7,31 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MagicSelectGui extends Gui {
 
     private ItemStack FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP;
+    private List<String> FIRElore = new ArrayList<>(),
+            FREEZElore = new ArrayList<>(),
+            EXPLOSIONlore = new ArrayList<>(),
+            ACID_RAINlore = new ArrayList<>(),
+            ICELC_DROPlore = new ArrayList<>();
     private ItemStack[] magicSet;
     private List<ItemStack> magicSets;
     private Inventory guiSource;
     private int slotSource;
 
     public MagicSelectGui(Inventory inventory, int slotSource) {
-        this.FIRE = super.createItemStack(Material.FIREBALL, ChatColor.YELLOW + "ファイヤ /5 マナ /3 スピリット", null, 1);
-        this.FREEZE = super.createItemStack(Material.ICE, ChatColor.YELLOW + "フリーズ /5 マナ /3 スピリット", null, 1);
-        this.EXPLOSION = super.createItemStack(Material.TNT, ChatColor.YELLOW + "エクスプロージョン /10 マナ /10 スピリット", null, 1);
-        this.ACID_RAIN = super.createItemStack(Material.WATER_BUCKET, ChatColor.YELLOW + "アシッドレイン /7 マナ /8 スピリット", null, 1);
-        this.ICELC_DROP = super.createItemStack(Material.PACKED_ICE, ChatColor.YELLOW + "アイゼルクドロップ /10 マナ /10 スピリット", null, 1);
+        this.createLore();
+
+        this.FIRE = super.createItemStack(Material.FIREBALL, ChatColor.YELLOW + "ファイヤ /5 マナ /3 スピリット", FIRElore, 1);
+        this.FREEZE = super.createItemStack(Material.ICE, ChatColor.YELLOW + "フリーズ /5 マナ /3 スピリット", FREEZElore, 1);
+        this.EXPLOSION = super.createItemStack(Material.TNT, ChatColor.YELLOW + "エクスプロージョン /10 マナ /10 スピリット", EXPLOSIONlore, 1);
+        this.ACID_RAIN = super.createItemStack(Material.WATER_BUCKET, ChatColor.YELLOW + "アシッドレイン /7 マナ /8 スピリット", ACID_RAINlore, 1);
+        this.ICELC_DROP = super.createItemStack(Material.PACKED_ICE, ChatColor.YELLOW + "アイゼルクドロップ /10 マナ /10 スピリット", ICELC_DROPlore, 1);
 
         this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP};
         this.magicSets = Arrays.asList(magicSet);
@@ -78,5 +86,13 @@ public class MagicSelectGui extends Gui {
         }
 
         return amount == playerMaxMagicAmount;
+    }
+
+    public void createLore(){
+        this.FIRElore.add(0, ChatColor.RED + "敵を炎上させる");
+        this.FREEZElore.add(0, ChatColor.RED + "敵を凍り付け、移動不可能にする");
+        this.EXPLOSIONlore.add(0, ChatColor.RED + "大爆発を引き起こす");
+        this.ACID_RAINlore.add(0, ChatColor.RED + "酸性の雨を降らす");
+        this.ICELC_DROPlore.add(0, ChatColor.RED + "雷撃を纏った氷塊を落下させる");
     }
 }

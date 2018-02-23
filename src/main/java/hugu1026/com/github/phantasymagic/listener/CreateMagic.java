@@ -1,14 +1,12 @@
 package hugu1026.com.github.phantasymagic.listener;
 
 import hugu1026.com.github.phantasymagic.event.CreateMagicEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
@@ -53,18 +51,18 @@ public class CreateMagic implements Listener {
             }
         }
 
-            if (spiritAmount >= sumNeedSpirit) {
-                wandMeta.setDisplayName(ChatColor.BLUE + "魔法の杖 " + "必要マナ: " + ChatColor.LIGHT_PURPLE + sumMana);
-                wandMeta.setLore(lore);
+        if (spiritAmount >= sumNeedSpirit) {
+            wandMeta.setDisplayName(ChatColor.BLUE + "魔法の杖 " + "必要マナ: " + ChatColor.LIGHT_PURPLE + sumMana);
+            wandMeta.setLore(lore);
 
-                MAGIC_WAND.setItemMeta(wandMeta);
+            MAGIC_WAND.setItemMeta(wandMeta);
 
-                player.getWorld().dropItem(player.getLocation().add(0, 0.5, 0), MAGIC_WAND).setPickupDelay(0);
+            player.getWorld().dropItem(player.getLocation().add(0, 0.5, 0), MAGIC_WAND).setPickupDelay(0);
 
-                spirit.setAmount(sumNeedSpirit);
-                player.getInventory().removeItem(spirit);
-            } else {
-                player.sendMessage(ChatColor.RED + "スピリットが足りない！ 必要スピリット: " + sumNeedSpirit);
-            }
+            spirit.setAmount(sumNeedSpirit);
+            player.getInventory().removeItem(spirit);
+        } else {
+            player.sendMessage(ChatColor.RED + "スピリットが足りない！ 必要スピリット: " + sumNeedSpirit);
         }
+    }
 }
