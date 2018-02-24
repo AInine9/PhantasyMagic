@@ -88,7 +88,7 @@ public class MagicSelectGui extends Gui {
         return amount == playerMaxMagicAmount;
     }
 
-    public void createLore(){
+    public void createLore() {
         this.FIRElore.add(0, ChatColor.RED + "敵を炎上させる");
         this.FREEZElore.add(0, ChatColor.RED + "敵を凍り付け、移動不可能にする");
         this.EXPLOSIONlore.add(0, ChatColor.RED + "大爆発を引き起こす");
