@@ -7,8 +7,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import javax.xml.bind.Marshaller;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class MagicSelectGui extends Gui {
@@ -23,6 +25,7 @@ public class MagicSelectGui extends Gui {
     private List<ItemStack> magicSets;
     private Inventory guiSource;
     private int slotSource;
+    private HashMap<String, ItemStack> magicListName = new HashMap<>();
 
     public MagicSelectGui(Inventory inventory, int slotSource) {
         this.createLore();
@@ -39,13 +42,20 @@ public class MagicSelectGui extends Gui {
         this.slotSource = slotSource;
         this.guiSource = inventory;
 
+        magicListName.put("fire", FIRE);
+        magicListName.put("freeze", FREEZE);
+        magicListName.put("explosion", EXPLOSION);
+        magicListName.put("acid rain", ACID_RAIN);
+        magicListName.put("icelc drop", ICELC_DROP);
+
         super.createInventory(this, 9 * 6, "魔法を選択");
     }
 
     @Override
     public void openInventory(Player player) {
-        for (int i = 0; i < magicSets.size(); i++) {
-            super.setInventory(magicSets.get(i), i);
+        List<String> magicList = PlayerDataUtil.getMagicList(player);
+        for (String name : magicList) {
+            addInventory(magicListName.get(name));
         }
         super.openInventory(player);
     }

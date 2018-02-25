@@ -25,6 +25,12 @@ public class Gui implements InventoryHolder {
         }
     }
 
+    public void addInventory(ItemStack itemStack) {
+        if (itemStack != null) {
+            inventory.addItem(itemStack);
+        }
+    }
+
     public void createInventory(InventoryHolder owner, int size, String name) {
         inventory = Bukkit.createInventory(owner, size, name);
     }
