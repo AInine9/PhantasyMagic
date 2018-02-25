@@ -1,12 +1,14 @@
 package hugu1026.com.github.phantasymagic.magic;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
+import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionEffect;
@@ -16,8 +18,8 @@ import java.util.Collection;
 
 public class Freeze extends Magic {
 
-    public Freeze(String magicName, Event event, Integer slot) {
-        super(magicName, event, slot, 5);
+    public Freeze(String magicName, Event event, Integer slot, Player player) {
+        super(magicName, event, slot, 5, player);
     }
 
     @Override
@@ -35,7 +37,8 @@ public class Freeze extends Magic {
     }
 
     @Override
-    public boolean checkMagicName(String magicName) {
-        return magicName.equals("フリーズ");
+    public boolean checkMagicName(String magicName, Player player) {
+        return magicName.equals("フリーズ")
+                && PlayerDataUtil.getMagicList(player).contains("freeze");
     }
 }

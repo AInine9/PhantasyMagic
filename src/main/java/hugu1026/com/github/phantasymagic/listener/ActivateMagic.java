@@ -2,6 +2,7 @@ package hugu1026.com.github.phantasymagic.listener;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
 import hugu1026.com.github.phantasymagic.magic.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,7 +33,7 @@ public class ActivateMagic implements Listener {
 
             magicClass.stream().forEach(c -> {
                 try {
-                    c.getConstructor(String.class, Event.class, Integer.class).newInstance(activateMagic, event, slot);
+                    c.getConstructor(String.class, Event.class, Integer.class, Player.class).newInstance(activateMagic, event, slot, event.getPlayer());
                 } catch (Exception ex) {
                     return;
                 }

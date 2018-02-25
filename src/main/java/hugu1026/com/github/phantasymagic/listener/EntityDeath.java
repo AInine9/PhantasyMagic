@@ -1,7 +1,6 @@
 package hugu1026.com.github.phantasymagic.listener;
 
 import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Creature;
@@ -10,8 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.Random;
 
 public class EntityDeath implements Listener {
 

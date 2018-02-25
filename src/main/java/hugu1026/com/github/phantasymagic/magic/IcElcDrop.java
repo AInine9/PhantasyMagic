@@ -2,6 +2,7 @@ package hugu1026.com.github.phantasymagic.magic;
 
 import hugu1026.com.github.phantasymagic.PhantasyMagic;
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
+import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -9,6 +10,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.metadata.FixedMetadataValue;
 
@@ -16,8 +18,8 @@ import java.util.Collection;
 
 public class IcElcDrop extends Magic {
 
-    public IcElcDrop(String magicName, Event event, Integer slot) {
-        super(magicName, event, slot, 10);
+    public IcElcDrop(String magicName, Event event, Integer slot, Player player) {
+        super(magicName, event, slot, 10, player);
     }
 
     @Override
@@ -37,7 +39,8 @@ public class IcElcDrop extends Magic {
     }
 
     @Override
-    public boolean checkMagicName(String magicName) {
-        return magicName.equals("アイゼルクドロップ");
+    public boolean checkMagicName(String magicName, Player player) {
+        return magicName.equals("アイゼルクドロップ")
+                && PlayerDataUtil.getMagicList(player).contains("icelc drop");
     }
 }

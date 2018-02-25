@@ -17,8 +17,8 @@ public abstract class Magic {
     private Location magicLocation;
     private int magicPower;
 
-    public Magic(String magicName, Event event, Integer slot, Integer neededMana) {
-        if (checkMagicName(magicName) && this.checkActivateEventName(event)) {
+    public Magic(String magicName, Event event, Integer slot, Integer neededMana, Player player) {
+        if (checkMagicName(magicName, player) && checkActivateEventName(event)) {
             ActivateMagicEvent activateMagicEvent = (ActivateMagicEvent) event;
             magicPower = PlayerDataUtil.getPlayerMAGIC(activateMagicEvent.getPlayer());
 
@@ -35,7 +35,7 @@ public abstract class Magic {
 
     public abstract void ActivatedMagic(ActivateMagicEvent event, Location magicLocation, int magicPower);
 
-    public abstract boolean checkMagicName(String magicName);
+    public abstract boolean checkMagicName(String magicName, Player player);
 
     public boolean checkActivateEventName(Event event) {
         if (event instanceof ActivateMagicEvent) {

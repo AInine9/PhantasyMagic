@@ -1,18 +1,20 @@
 package hugu1026.com.github.phantasymagic.magic;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
+import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import java.util.Collection;
 
 public class Explosion extends Magic {
 
-    public Explosion(String magicName, Event event, Integer slot) {
-        super(magicName, event, slot, 10);
+    public Explosion(String magicName, Event event, Integer slot, Player player) {
+        super(magicName, event, slot, 10, player);
     }
 
     @Override
@@ -32,7 +34,8 @@ public class Explosion extends Magic {
     }
 
     @Override
-    public boolean checkMagicName(String magicName) {
-        return magicName.equals("エクスプロージョン");
+    public boolean checkMagicName(String magicName, Player player) {
+        return magicName.equals("エクスプロージョン")
+                && PlayerDataUtil.getMagicList(player).contains("explosion");
     }
 }
