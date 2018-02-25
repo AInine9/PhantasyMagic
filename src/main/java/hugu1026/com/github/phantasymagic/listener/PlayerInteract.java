@@ -1,6 +1,7 @@
 package hugu1026.com.github.phantasymagic.listener;
 
 import hugu1026.com.github.phantasymagic.event.ActivateMagicEvent;
+import hugu1026.com.github.phantasymagic.event.MagicBookClickedEvent;
 import hugu1026.com.github.phantasymagic.gui.MagicSquareGui;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -42,6 +43,11 @@ public class PlayerInteract implements Listener {
             if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().contains(ChatColor.BLUE + "魔法の杖")) {
                 ActivateMagicEvent activateMagicEvent = new ActivateMagicEvent(player);
                 Bukkit.getServer().getPluginManager().callEvent(activateMagicEvent);
+            }
+
+            if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().contains("魔導書")) {
+                MagicBookClickedEvent bookClickedEvent = new MagicBookClickedEvent(player);
+                Bukkit.getServer().getPluginManager().callEvent(bookClickedEvent);
             }
         }
 
