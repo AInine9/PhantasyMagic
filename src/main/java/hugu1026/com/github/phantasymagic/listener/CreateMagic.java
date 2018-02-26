@@ -3,6 +3,8 @@ package hugu1026.com.github.phantasymagic.listener;
 import hugu1026.com.github.phantasymagic.event.CreateMagicEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -61,6 +63,11 @@ public class CreateMagic implements Listener {
 
             spirit.setAmount(sumNeedSpirit);
             player.getInventory().removeItem(spirit);
+
+            player.sendMessage(ChatColor.LIGHT_PURPLE + "魔法作詠に成功した！");
+            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1, (float) 1.3);
+            player.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, player.getLocation().add(0, 0.5, 0), 200);
+            player.getWorld().spawnParticle(Particle.SPELL_WITCH, player.getLocation().add(0, 0.5, 0), 100);
         } else {
             player.sendMessage(ChatColor.RED + "スピリットが足りない！ 必要スピリット: " + sumNeedSpirit);
         }
