@@ -20,6 +20,7 @@ public class MagicBookClickedEvent extends Event{
         magicList.put("爆裂の", "explosion");
         magicList.put("酸性水の", "acid rain");
         magicList.put("雷氷塊の", "icelc drop");
+        magicList.put("雷撃の", "thunder bolt");
     }
 
     public MagicBookClickedEvent(Player player) {

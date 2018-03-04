@@ -15,12 +15,13 @@ import java.util.List;
 
 public class MagicSelectGui extends Gui {
 
-    private ItemStack FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP;
+    private ItemStack FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT;
     private List<String> FIRElore = new ArrayList<>(),
             FREEZElore = new ArrayList<>(),
             EXPLOSIONlore = new ArrayList<>(),
             ACID_RAINlore = new ArrayList<>(),
-            ICELC_DROPlore = new ArrayList<>();
+            ICELC_DROPlore = new ArrayList<>(),
+            THUNDER_BOLTlore = new ArrayList<>();
     private ItemStack[] magicSet;
     private List<ItemStack> magicSets;
     private Inventory guiSource;
@@ -35,8 +36,9 @@ public class MagicSelectGui extends Gui {
         this.EXPLOSION = super.createItemStack(Material.TNT, ChatColor.YELLOW + "エクスプロージョン /10 マナ /10 スピリット", EXPLOSIONlore, 1);
         this.ACID_RAIN = super.createItemStack(Material.WATER_BUCKET, ChatColor.YELLOW + "アシッドレイン /7 マナ /8 スピリット", ACID_RAINlore, 1);
         this.ICELC_DROP = super.createItemStack(Material.PACKED_ICE, ChatColor.YELLOW + "アイゼルクドロップ /10 マナ /10 スピリット", ICELC_DROPlore, 1);
+this.THUNDER_BOLT = super.createItemStack(Material.SPECTRAL_ARROW, ChatColor.YELLOW + "サンダーボルト /10 マナ /9 スピリット", THUNDER_BOLTlore, 1);
 
-        this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP};
+        this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT};
         this.magicSets = Arrays.asList(magicSet);
 
         this.slotSource = slotSource;
@@ -47,8 +49,18 @@ public class MagicSelectGui extends Gui {
         magicListName.put("explosion", EXPLOSION);
         magicListName.put("acid rain", ACID_RAIN);
         magicListName.put("icelc drop", ICELC_DROP);
+        magicListName.put("thunder bolt", THUNDER_BOLT);
 
         super.createInventory(this, 9 * 6, "魔法を選択");
+    }
+
+    public void createLore() {
+        this.FIRElore.add(0, ChatColor.RED + "敵を炎上させる");
+        this.FREEZElore.add(0, ChatColor.RED + "敵を凍り付け、移動不可能にする");
+        this.EXPLOSIONlore.add(0, ChatColor.RED + "大爆発を引き起こす");
+        this.ACID_RAINlore.add(0, ChatColor.RED + "酸性の雨を降らす");
+        this.ICELC_DROPlore.add(0, ChatColor.RED + "雷撃を纏った氷塊を落下させる");
+        this.THUNDER_BOLTlore.add(0, ChatColor.RED + "稲妻を落とす");
     }
 
     @Override
@@ -96,13 +108,5 @@ public class MagicSelectGui extends Gui {
         }
 
         return amount == playerMaxMagicAmount;
-    }
-
-    public void createLore() {
-        this.FIRElore.add(0, ChatColor.RED + "敵を炎上させる");
-        this.FREEZElore.add(0, ChatColor.RED + "敵を凍り付け、移動不可能にする");
-        this.EXPLOSIONlore.add(0, ChatColor.RED + "大爆発を引き起こす");
-        this.ACID_RAINlore.add(0, ChatColor.RED + "酸性の雨を降らす");
-        this.ICELC_DROPlore.add(0, ChatColor.RED + "雷撃を纏った氷塊を落下させる");
     }
 }
