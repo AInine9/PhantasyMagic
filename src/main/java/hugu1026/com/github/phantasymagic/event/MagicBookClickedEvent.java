@@ -8,12 +8,10 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
-public class MagicBookClickedEvent extends Event{
+public class MagicBookClickedEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
-    private ItemStack magicBook;
-    private String magicCalledName, magicName, magicDisplayName;
-    private Player player;
     private static HashMap<String, String> magicList = new HashMap<>();
+
     static { //magic book name without "魔導書"
         magicList.put("火炎の", "fire");
         magicList.put("吹雪の", "freeze");
@@ -21,7 +19,12 @@ public class MagicBookClickedEvent extends Event{
         magicList.put("酸性水の", "acid rain");
         magicList.put("雷氷塊の", "icelc drop");
         magicList.put("雷撃の", "thunder bolt");
+        magicList.put("癒やしの", "heal");
     }
+
+    private ItemStack magicBook;
+    private String magicCalledName, magicName, magicDisplayName;
+    private Player player;
 
     public MagicBookClickedEvent(Player player) {
         this.player = player;

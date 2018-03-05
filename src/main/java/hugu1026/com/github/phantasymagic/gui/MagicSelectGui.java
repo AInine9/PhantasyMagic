@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import javax.xml.bind.Marshaller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,7 +35,7 @@ public class MagicSelectGui extends Gui {
         this.EXPLOSION = super.createItemStack(Material.TNT, ChatColor.YELLOW + "エクスプロージョン /10 マナ /10 スピリット", EXPLOSIONlore, 1);
         this.ACID_RAIN = super.createItemStack(Material.WATER_BUCKET, ChatColor.YELLOW + "アシッドレイン /7 マナ /8 スピリット", ACID_RAINlore, 1);
         this.ICELC_DROP = super.createItemStack(Material.PACKED_ICE, ChatColor.YELLOW + "アイゼルクドロップ /10 マナ /10 スピリット", ICELC_DROPlore, 1);
-this.THUNDER_BOLT = super.createItemStack(Material.SPECTRAL_ARROW, ChatColor.YELLOW + "サンダーボルト /10 マナ /9 スピリット", THUNDER_BOLTlore, 1);
+        this.THUNDER_BOLT = super.createItemStack(Material.SPECTRAL_ARROW, ChatColor.YELLOW + "サンダーボルト /10 マナ /9 スピリット", THUNDER_BOLTlore, 1);
 
         this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT};
         this.magicSets = Arrays.asList(magicSet);
@@ -96,17 +95,16 @@ this.THUNDER_BOLT = super.createItemStack(Material.SPECTRAL_ARROW, ChatColor.YEL
 
     public boolean checkMagicAmount(Player player) {
         Inventory guiSource = this.guiSource;
+        MagicSquareGui magicSquareGui = (MagicSquareGui) guiSource.getHolder();
         int amount = 0;
         int playerMaxMagicAmount = PlayerDataUtil.getMagicAmountLimit(player);
 
         for (int i = 0; i < 45; i++) {
-            for (ItemStack magicIcon : magicSets) {
-                if (magicIcon.equals(guiSource.getItem(i))) {
-                    amount++;
-                }
+            ItemStack magicIcon = guiSource.getItem(i);
+            if (!magicSquareGui.checkItemisIcon(magicIcon)) {
+                amount++;
             }
         }
-
         return amount == playerMaxMagicAmount;
     }
 }

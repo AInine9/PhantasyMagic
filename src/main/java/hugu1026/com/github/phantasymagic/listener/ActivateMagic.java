@@ -23,6 +23,7 @@ public class ActivateMagic implements Listener {
         magicClass.add(AcidRain.class);
         magicClass.add(IcElcDrop.class);
         magicClass.add(ThunderBolt.class);
+        magicClass.add(Heal.class);
     }
 
     @EventHandler

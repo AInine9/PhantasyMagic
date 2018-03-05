@@ -3,6 +3,7 @@ package hugu1026.com.github.phantasymagic.listener;
 import hugu1026.com.github.phantasymagic.event.CreateMagicEvent;
 import hugu1026.com.github.phantasymagic.gui.MagicSelectGui;
 import hugu1026.com.github.phantasymagic.gui.MagicSquareGui;
+import hugu1026.com.github.phantasymagic.gui.SelfMagicSelectGui;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -46,7 +47,15 @@ public class InventoryClick implements Listener {
 
                     magicSelectGui.openInventory(player);
                 } else if (clickedItem.equals(magicSquareGui.getPLAYER_HEAD())) {
+                    SelfMagicSelectGui selectGui = new SelfMagicSelectGui(inventory, event.getRawSlot());
 
+                    if (selectGui.checkMagicAmount(player)) {
+                        event.setCancelled(true);
+                        player.sendMessage(ChatColor.RED + "これ以上魔法を設置できない！");
+                        return;
+                    }
+
+                    selectGui.openInventory(player);
                 } else if (clickedItem.equals(magicSquareGui.getCREATE_MAGIC_ITEM())) {
                     CreateMagicEvent createMagicEvent = new CreateMagicEvent(event.getInventory(), player);
 
@@ -69,6 +78,27 @@ public class InventoryClick implements Listener {
 
                         int slotSource = magicSelectGui.getSlotSource();
                         Inventory guiSource = magicSelectGui.getGuiSource();
+
+                        guiSource.setItem(slotSource, magicIcon);
+
+                        player.openInventory(guiSource);
+                    }
+                }
+            }
+        }
+
+        if (inventory.getHolder() instanceof SelfMagicSelectGui) {
+            SelfMagicSelectGui selectGui = (SelfMagicSelectGui) event.getInventory().getHolder();
+
+            if (clickedItem != null) {
+                List<ItemStack> magicSets = selectGui.getMagicSets();
+
+                for (ItemStack magicIcon : magicSets) {
+                    if (event.getCurrentItem().equals(magicIcon)) {
+                        event.setCancelled(true);
+
+                        int slotSource = selectGui.getSlotSource();
+                        Inventory guiSource = selectGui.getGuiSource();
 
                         guiSource.setItem(slotSource, magicIcon);
 

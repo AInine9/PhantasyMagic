@@ -60,4 +60,11 @@ public class MagicSquareGui extends Gui {
     public ItemStack getCREATE_MAGIC_ITEM() {
         return this.CREATE_MAGIC_ITEM;
     }
+
+    public boolean checkItemisIcon(ItemStack item) {
+        return item.equals(this.BARRIER_BLOCK)
+                || item.equals(this.CREATE_MAGIC_ITEM)
+                || item.equals(this.PANEL)
+                || item.equals(this.PLAYER_HEAD);
+    }
 }
