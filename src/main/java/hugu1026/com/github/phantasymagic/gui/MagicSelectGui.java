@@ -14,13 +14,14 @@ import java.util.List;
 
 public class MagicSelectGui extends Gui {
 
-    private ItemStack FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT;
+    private ItemStack FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT, HEAL;
     private List<String> FIRElore = new ArrayList<>(),
             FREEZElore = new ArrayList<>(),
             EXPLOSIONlore = new ArrayList<>(),
             ACID_RAINlore = new ArrayList<>(),
             ICELC_DROPlore = new ArrayList<>(),
-            THUNDER_BOLTlore = new ArrayList<>();
+            THUNDER_BOLTlore = new ArrayList<>(),
+            HEALlore = new ArrayList<>();
     private ItemStack[] magicSet;
     private List<ItemStack> magicSets;
     private Inventory guiSource;
@@ -36,8 +37,9 @@ public class MagicSelectGui extends Gui {
         this.ACID_RAIN = super.createItemStack(Material.WATER_BUCKET, ChatColor.YELLOW + "アシッドレイン /7 マナ /8 スピリット", ACID_RAINlore, 1);
         this.ICELC_DROP = super.createItemStack(Material.PACKED_ICE, ChatColor.YELLOW + "アイゼルクドロップ /10 マナ /10 スピリット", ICELC_DROPlore, 1);
         this.THUNDER_BOLT = super.createItemStack(Material.SPECTRAL_ARROW, ChatColor.YELLOW + "サンダーボルト /10 マナ /9 スピリット", THUNDER_BOLTlore, 1);
+        this.HEAL = super.createItemStack(Material.POTION, ChatColor.YELLOW + "ヒール /7 マナ /5 スピリット", HEALlore, 1);
 
-        this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT};
+        this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT, HEAL};
         this.magicSets = Arrays.asList(magicSet);
 
         this.slotSource = slotSource;
@@ -49,6 +51,7 @@ public class MagicSelectGui extends Gui {
         magicListName.put("acid rain", ACID_RAIN);
         magicListName.put("icelc drop", ICELC_DROP);
         magicListName.put("thunder bolt", THUNDER_BOLT);
+        magicListName.put("heal", HEAL);
 
         super.createInventory(this, 9 * 6, "魔法を選択");
     }
@@ -60,6 +63,7 @@ public class MagicSelectGui extends Gui {
         this.ACID_RAINlore.add(0, ChatColor.RED + "酸性の雨を降らす");
         this.ICELC_DROPlore.add(0, ChatColor.RED + "雷撃を纏った氷塊を落下させる");
         this.THUNDER_BOLTlore.add(0, ChatColor.RED + "稲妻を落とす");
+        this.HEALlore.add(0, ChatColor.RED + "対象のプレイヤーの体力を回復する");
     }
 
     @Override
