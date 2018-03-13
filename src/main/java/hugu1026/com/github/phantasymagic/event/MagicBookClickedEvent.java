@@ -20,6 +20,7 @@ public class MagicBookClickedEvent extends Event {
         magicList.put("雷氷塊の", "icelc drop");
         magicList.put("雷撃の", "thunder bolt");
         magicList.put("癒やしの", "heal");
+        magicList.put("聖十字の", "sanctam cross");
     }
 
     private ItemStack magicBook;

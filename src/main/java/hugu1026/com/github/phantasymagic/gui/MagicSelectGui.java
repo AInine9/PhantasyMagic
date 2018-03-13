@@ -14,14 +14,15 @@ import java.util.List;
 
 public class MagicSelectGui extends Gui {
 
-    private ItemStack FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT, HEAL;
+    private ItemStack FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT, HEAL, SANCTAM_CROSS;
     private List<String> FIRElore = new ArrayList<>(),
             FREEZElore = new ArrayList<>(),
             EXPLOSIONlore = new ArrayList<>(),
             ACID_RAINlore = new ArrayList<>(),
             ICELC_DROPlore = new ArrayList<>(),
             THUNDER_BOLTlore = new ArrayList<>(),
-            HEALlore = new ArrayList<>();
+            HEALlore = new ArrayList<>(),
+            SANCTAM_CROSSlore = new ArrayList<>();
     private ItemStack[] magicSet;
     private List<ItemStack> magicSets;
     private Inventory guiSource;
@@ -38,8 +39,9 @@ public class MagicSelectGui extends Gui {
         this.ICELC_DROP = super.createItemStack(Material.PACKED_ICE, ChatColor.YELLOW + "アイゼルクドロップ /10 マナ /10 スピリット", ICELC_DROPlore, 1);
         this.THUNDER_BOLT = super.createItemStack(Material.SPECTRAL_ARROW, ChatColor.YELLOW + "サンダーボルト /10 マナ /9 スピリット", THUNDER_BOLTlore, 1);
         this.HEAL = super.createItemStack(Material.POTION, ChatColor.YELLOW + "ヒール /7 マナ /5 スピリット", HEALlore, 1);
+        this.SANCTAM_CROSS = super.createItemStack(Material.ENCHANTED_BOOK, ChatColor.YELLOW + "サンクタムクロス /15 マナ /15 スピリット", SANCTAM_CROSSlore, 1);
 
-        this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT, HEAL};
+        this.magicSet = new ItemStack[]{FIRE, FREEZE, EXPLOSION, ACID_RAIN, ICELC_DROP, THUNDER_BOLT, HEAL, SANCTAM_CROSS};
         this.magicSets = Arrays.asList(magicSet);
 
         this.slotSource = slotSource;
@@ -52,6 +54,7 @@ public class MagicSelectGui extends Gui {
         magicListName.put("icelc drop", ICELC_DROP);
         magicListName.put("thunder bolt", THUNDER_BOLT);
         magicListName.put("heal", HEAL);
+        magicListName.put("sanctam cross", SANCTAM_CROSS);
 
         super.createInventory(this, 9 * 6, "魔法を選択");
     }
@@ -64,6 +67,7 @@ public class MagicSelectGui extends Gui {
         this.ICELC_DROPlore.add(0, ChatColor.RED + "雷撃を纏った氷塊を落下させる");
         this.THUNDER_BOLTlore.add(0, ChatColor.RED + "稲妻を落とす");
         this.HEALlore.add(0, ChatColor.RED + "対象のプレイヤーの体力を回復する");
+        this.SANCTAM_CROSSlore.add(0, ChatColor.RED + "巨大な聖なる十字架の中に相手を閉じ込め、浄化する");
     }
 
     @Override
