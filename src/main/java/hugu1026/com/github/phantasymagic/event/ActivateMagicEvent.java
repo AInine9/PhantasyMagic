@@ -22,6 +22,9 @@ public class ActivateMagicEvent extends Event {
         List<String> lores = this.MAGIC_WAND.getItemMeta().getLore();
         for (String lore : lores) {
             lore = ChatColor.stripColor(lore);
+            if (!lore.contains(": ")) {
+                continue;
+            }
             String[] temp = lore.split(": ", 0);
             int slot = Integer.parseInt(temp[0]);
             String magic = temp[1];
